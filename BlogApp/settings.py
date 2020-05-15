@@ -121,11 +121,12 @@ EMAIL_USE_TLS = True
 SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
 EMAIL_HOST_PASSWORD = os.environ.get('pass')
 
+import django_heroku
+django_heroku.settings(locals())
 
 import dj_database_url
-db_from_env = dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
 
 
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
@@ -134,7 +135,7 @@ STATIC_URL = 'Blog/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(PROJECT_ROOT, 'Blog/static'),
 )
 
 #  Add configuration for static files storage using whitenoise
