@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  {% extends "Blog/base.html" %}
+
+  {% block title %}My Blog{% endblock %}
+
+  {% block content %}
+  <h1>Welcome to Blogathon</h1>
+  {% if tag %}
+  <h2>Posts tagged with "{{ tag.name }}"</h2>
+  {% endif %}
+  <div class="ess">
+    {% for post in posts %}
+  <a href="{{ post.get_absolute_url }}">
+    <div class="but">
+      <div class="title">
+        {{ post.title }}
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+  </div>
+  {% include "pagination.html" with page=posts %}
+  {% endblock %}
+</body>
+
+</html>

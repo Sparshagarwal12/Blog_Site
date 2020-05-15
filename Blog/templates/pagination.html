@@ -1,0 +1,30 @@
+<div class="pagination">
+    <span class="step-links">
+        {% if page.has_previous %}
+        <div>
+            <button class="nextBut" onclick="myFunction1()">Previous</button>
+        </div>
+         <script>
+            function myFunction1() {
+                location.href = "?page={{ page.previous_page_number }}"
+            }
+        </script>
+        {% endif %}
+        {% if page.has_next %}
+
+        <div >
+            <button class="nextBut" onclick="myFunction()">Next</button>
+        </div>
+        <script>
+            function myFunction() {
+                location.href = "?page={{ page.next_page_number }}"
+            }
+        </script>
+        {% endif %}
+        <div class="pages">
+            <span class="current">
+                Page {{ page.number }}
+            </span>
+        </div>
+    </span>
+</div>
