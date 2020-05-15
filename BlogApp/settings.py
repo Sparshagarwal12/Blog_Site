@@ -1,3 +1,6 @@
+from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parents[1]
@@ -11,13 +14,9 @@ SECRET_KEY = 'ul@6qn^%=n$he0%^!+(d+%lsmr@-+2)&1tzab%%%@x%ni!wu6^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['friendblogger.herokuapp.com']
 
+ALLOWED_HOSTS = ['friendblogs.herokuapp.com']
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
-heroku ps:scale web=1
 
 # Application definition
 
@@ -33,6 +32,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,8 +118,24 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
+SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 
 import dj_database_url
 db_from_env = dj_database_url.config()
 DATABASES['default'].update(db_from_env)
 DATABASES['default']['CONN_MAX_AGE'] = 500
+
+
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
