@@ -112,7 +112,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'mangalsanchit20@gmail.com'
+EMAIL_HOST_USER = 'admin@admin.com'
 EMAIL_HOST_PASSWORD = 'pass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -122,10 +122,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
+import dj_database_url 
+prod_db  =  dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(prod_db)
 
 
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
