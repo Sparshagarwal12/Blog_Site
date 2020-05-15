@@ -15,7 +15,7 @@ SECRET_KEY = 'ul@6qn^%=n$he0%^!+(d+%lsmr@-+2)&1tzab%%%@x%ni!wu6^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['friendblogs.herokuapp.com']
+ALLOWED_HOSTS = ['friendbloger.herokuapp.com']
 
 
 # Application definition
@@ -119,12 +119,13 @@ EMAIL_USE_TLS = True
 
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = os.environ.get('pass')
 
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
@@ -137,4 +138,4 @@ STATICFILES_DIRS = (
 )
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
