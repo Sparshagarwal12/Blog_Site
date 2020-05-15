@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parents[1]
 SECRET_KEY = 'ul@6qn^%=n$he0%^!+(d+%lsmr@-+2)&1tzab%%%@x%ni!wu6^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['friendblogs.herokuapp.com']
 
@@ -112,7 +112,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'admin@admin.com'
+EMAIL_HOST_USER = 'mangalsanchit20@gmail.com'
 EMAIL_HOST_PASSWORD = 'pass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
