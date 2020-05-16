@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'taggit',
 ]
 
+
+
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -118,8 +120,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
-EMAIL_HOST_PASSWORD = os.environ.get('pass')
+# SECRET_KEY = os.environ.get('SECRET_KEY', 'SOME+RANDOM+KEY(z9+3vnm(jb0u@&w68t#5_e8s9-lbfhv-')  
+# EMAIL_HOST_PASSWORD = os.environ.get('pass')
 
 
 import dj_database_url
