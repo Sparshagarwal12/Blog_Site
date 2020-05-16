@@ -15,7 +15,7 @@ SECRET_KEY = 'ul@6qn^%=n$he0%^!+(d+%lsmr@-+2)&1tzab%%%@x%ni!wu6^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['friendblogs.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -30,9 +30,9 @@ INSTALLED_APPS = [
     'Blog.apps.BlogConfig',
     'taggit',
 ]
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -112,7 +112,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'admin@admin.com'
+EMAIL_HOST_USER = 'mangalsanchit.com'
 EMAIL_HOST_PASSWORD = 'pass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -123,7 +123,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('pass')
 
 
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
-STATIC_ROOT  =   os.path.join(BASE_DIR, 'static')
+STATIC_ROOT  =   os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
@@ -131,11 +131,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+# DATABASES['default']['CONN_MAX_AGE'] = 500
 
 
-#  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# #  Add configuration for static files storage using whitenoise
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
